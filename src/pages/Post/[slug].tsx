@@ -71,6 +71,7 @@ const Post:NextPage = () => {
                 )
                 }
             </main>
+            <div className="w-full h-1 bg-slate-400 rounded"></div>
         </>
     )
 }

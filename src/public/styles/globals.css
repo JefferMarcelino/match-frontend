@@ -27,7 +27,7 @@ html {
 }
 
 .content ul {
-    @apply list-disc
+    @apply list-disc py-2 px-5
 }
 
 .content li {

@@ -63,37 +63,37 @@ const HomePage: NextPage = () => {
 
             <div className='flex flex-wrap gap-4 my-4'>
             <Link href="https://github.com/JefferMarcelino">
-              <a target="_blank" rel="noreferrer">
+              <a target="_blank" rel="noreferrer" className='hover:-translate-y-2 transition-transform'>
                 <GithubLogo size={40} />
               </a>
             </Link>
 
             <Link href="https://twitter.com/JefferMarcelin">
-              <a target="_blank" rel="noreferrer">
+              <a target="_blank" rel="noreferrer" className='hover:-translate-y-2 transition-transform'>
                 <TwitterLogo size={40} />
               </a>
             </Link>
 
             <Link href="https://www.linkedin.com/in/-94422a22b/">
-              <a target="_blank" rel="noreferrer">
+              <a target="_blank" rel="noreferrer" className='hover:-translate-y-2 transition-transform'>
                 <LinkedinLogo size={40} />
               </a>
             </Link>
 
             <Link href="https://www.instagram.com/jeffer_marcelin/">
-              <a target="_blank" rel="noreferrer">
+              <a target="_blank" rel="noreferrer" className='hover:-translate-y-2 transition-transform'>
                 <InstagramLogo size={40} />
               </a>
             </Link>
 
             <Link href="https://www.youtube.com/channel/UCXBFKr-rZ787IhXAzsnrw-Q">
-              <a target="_blank" rel="noreferrer">
+              <a target="_blank" rel="noreferrer" className='hover:-translate-y-2 transition-transform'>
                 <YoutubeLogo size={40} />
               </a>
             </Link>
 
             <Link href="mailto:jeffersunde72@gmail.com">
-              <a target="_blank" rel="noreferrer">
+              <a target="_blank" rel="noreferrer" className='hover:-translate-y-2 transition-transform'>
                 <GoogleLogo size={40} />
               </a>
             </Link>
