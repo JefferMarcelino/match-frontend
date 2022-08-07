@@ -2,6 +2,7 @@ import { ApolloProvider } from "@apollo/client"
 import type { AppProps } from 'next/app'
 import { client } from "../lib/apollo"
 import '../public/styles/globals.css'
+import { ScroolToTop } from "../components/ScroolToTop"
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -9,6 +10,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       <div className="w-full h-full min-h-screen text-blue text-lg p-5">
         <div className='max-w-4xl mx-auto flex flex-col gap-10'>
           <Component {...pageProps} />
+          <ScroolToTop />
         </div>
       </div>
     </ApolloProvider>
