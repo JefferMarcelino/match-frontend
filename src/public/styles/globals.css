@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.content p {
+    @apply my-5 text-lg leading-relaxed
+}
+
+.content img {
+    @apply max-h-[70vh] w-auto mx-auto my-4
+}
+
+.content blockquote {
+    @apply border-l-4 border-link p-2 bg-zinc-100 rounded
+}
+
+.content code {
+    @apply bg-gray-900 p-4 text-white rounded-md my-4 mx-auto block
+}
+
+.content a {
+    @apply underline text-link font-bold
+}
+
+.content ul {
+    @apply list-disc
+}
+
+.content li {
+    @apply leading-8
+}
