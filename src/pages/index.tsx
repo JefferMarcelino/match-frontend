@@ -2,6 +2,14 @@ import type { NextPage } from 'next';
 import Image from "next/image"
 import { gql, useQuery } from "@apollo/client"
 import { BlogCard } from '../components/BlogCard';
+import Link from 'next/link';
+import { 
+  LinkedinLogo, 
+  TwitterLogo, 
+  GithubLogo, 
+  YoutubeLogo, 
+  GoogleLogo, 
+  InstagramLogo } from "phosphor-react";
 
 interface GetPostsQueryResponse {
   posts: {
@@ -46,29 +54,49 @@ const HomePage: NextPage = () => {
           className='rounded-full'
           />
           <div>
-            <p className='text-xl'>Personal blog by <a href="https://github.com/JefferMarcelino" className='underline text-link underline-offset-4'>Jeffer Marcelino</a></p>
+            <p className='text-xl'>
+              Personal blog by <Link href="https://github.com/JefferMarcelino">
+                <a className='underline text-link underline-offset-4' target="_blank">Jeffer Marcelino</a>
+              </Link>
+            </p>
             <span className='text-zinc-600'>Web Developer</span>
 
             <div className='flex flex-wrap gap-4 my-4'>
-            <a href="https://twitter.com/JefferMarcelin" target="_blank" rel="noreferrer">
-              <Image src="https://img.shields.io/badge/-05122A?style=flat&logo=twitter" width={30} height={30} alt="twitter"/>  
-            </a>
+            <Link href="https://github.com/JefferMarcelino">
+              <a target="_blank" rel="noreferrer">
+                <GithubLogo size={40} />
+              </a>
+            </Link>
 
-            <a href="https://www.linkedin.com/in/-94422a22b/" target="_blank" rel="noreferrer">
-              <Image src="https://img.shields.io/badge/-05122A?style=flat&logo=linkedin" width={30} height={30} alt="linkedin"/>
-            </a>
+            <Link href="https://twitter.com/JefferMarcelin">
+              <a target="_blank" rel="noreferrer">
+                <TwitterLogo size={40} />
+              </a>
+            </Link>
 
-            <a href="https://www.instagram.com/jeffer_marcelin/" target="_blank" rel="noreferrer">
-              <Image src="https://img.shields.io/badge/-05122A?style=flat&logo=instagram" width={30} height={30} alt="instagram"/>
-            </a>
+            <Link href="https://www.linkedin.com/in/-94422a22b/">
+              <a target="_blank" rel="noreferrer">
+                <LinkedinLogo size={40} />
+              </a>
+            </Link>
 
-            <a href="https://www.youtube.com/channel/UCXBFKr-rZ787IhXAzsnrw-Q" target="_blank" rel="noreferrer">
-              <Image src="https://img.shields.io/badge/-05122A?style=flat&logo=youtube" width={30} height={30} alt="Youtube"/>
-            </a>
+            <Link href="https://www.instagram.com/jeffer_marcelin/">
+              <a target="_blank" rel="noreferrer">
+                <InstagramLogo size={40} />
+              </a>
+            </Link>
 
-            <a href="mailto:jeffersunde72@gmail.com" target="_blank" rel="noreferrer">
-              <Image src="https://img.shields.io/badge/-05122A?style=flat&logo=gmail" width={30} height={30} alt="Gmail"/>
-            </a>
+            <Link href="https://www.youtube.com/channel/UCXBFKr-rZ787IhXAzsnrw-Q">
+              <a target="_blank" rel="noreferrer">
+                <YoutubeLogo size={40} />
+              </a>
+            </Link>
+
+            <Link href="mailto:jeffersunde72@gmail.com">
+              <a target="_blank" rel="noreferrer">
+                <GoogleLogo size={40} />
+              </a>
+            </Link>
             </div>
           </div>
         </div>

@@ -1,3 +1,5 @@
+import Link from "next/link"
+
 interface BlogCardProps {
     title: string
     slug: string
@@ -13,10 +15,12 @@ export const BlogCard = ({ title, publishedDate, coverPhoto, description, slug }
     const dotsOrEmpty = aboveLimit ? "..." : ""
 
     return (
-        <a href={"Post/" + slug} className="block">
-            <h2 className="text-link text-2xl underline underline-offset-4">{ title }</h2>
-            <span className="text-zinc-400">{ publishedDate }</span>
-            <p className="mt-2">{ description.substring(0, LIMIT) + dotsOrEmpty }</p>
-        </a>
+        <Link href={"Post/" + slug}>
+            <a className="block">
+                <h2 className="text-link text-2xl underline underline-offset-4">{ title }</h2>
+                <span className="text-zinc-400">{ publishedDate }</span>
+                <p className="mt-2">{ description.substring(0, LIMIT) + dotsOrEmpty }</p>
+            </a>
+        </Link>
     )
 }
