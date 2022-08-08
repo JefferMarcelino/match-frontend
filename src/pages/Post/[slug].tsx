@@ -65,7 +65,7 @@ const Post:NextPage = () => {
         <> 
             <div>
                 <Link href="/">
-                    <a className="font-bold underline underline-offset-4 text-link">Página principal</a>
+                    <a className="font-bold underline underline-offset-4 text-link dark:text-darkLink">Página principal</a>
                 </Link>
             </div>
             <main className="min-h-screen flex flex-col">

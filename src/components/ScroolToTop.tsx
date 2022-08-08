@@ -13,7 +13,7 @@ export const ScroolToTop = () => {
 
     return(
         <button 
-        className={`bg-link rounded-full inline-block p-2 bottom-2 right-2 ${ showButton ? "fixed" : "none hidden" }`}
+        className={`bg-link dark:bg-darkLink rounded-full inline-block p-2 bottom-2 right-2 ${ showButton ? "fixed" : "none hidden" }`}
         onClick={() => {
             window.scrollTo(0, 0)
         }}
