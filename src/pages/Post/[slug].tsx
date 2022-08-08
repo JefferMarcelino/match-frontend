@@ -2,20 +2,23 @@ import { NextPage } from "next";
 import Image from "next/image"
 import { useRouter } from 'next/router'
 import { gql, useQuery } from "@apollo/client"
+import { format } from "date-fns"
+import ptBR from "date-fns/locale/pt-BR"
+import hljs from "highlight.js"
 
 import loadingImg from "../../public/images/loading.gif"
 import Link from "next/link";
 
 interface GetPostBySlugResponse {
     post: {
-        id: string
-        title: string
-        publishedDate: string
+        id: string;
+        title: string;
+        publishedDate: Date;
         coverPhoto: {
-            url: string 
+            url: string;
         }
         content: {
-            html: string
+            html: string;
         }
     }
 }
@@ -38,6 +41,7 @@ const GET_POST_BY_SLUG_QUERY = gql`
 const Post:NextPage = () => {
     const router = useRouter()
     const { slug } = router.query
+    var publishedDateFormatted = ""
 
     const { data } = useQuery<GetPostBySlugResponse>(GET_POST_BY_SLUG_QUERY, {
         variables: {
@@ -45,7 +49,14 @@ const Post:NextPage = () => {
         }
     })
 
-    console.log(data)
+    if (data?.post) {
+        var publishedDateFormatted = format(new Date(data?.post.publishedDate), "EEE' - 'd' de 'MMMM' - 'k'h'", {
+            locale: ptBR,
+        })
+        console.log()
+
+    }
+
 
     return (
         <>
@@ -57,8 +68,8 @@ const Post:NextPage = () => {
             <main className="min-h-screen flex flex-col">
                 { data ? (
                     <>
-                        <h1 className="text-4xl">{data?.post.title}</h1>
-                        <span className="text-zinc-400">{data?.post.publishedDate}</span>
+                        <h1 className="text-4xl mb-2">{data?.post.title}</h1>
+                        <span className="text-zinc-400 mb-4">{ publishedDateFormatted.toUpperCase() }</span>
                         <div 
                         className="content"
                         dangerouslySetInnerHTML={{ __html: data?.post.content.html }}>
@@ -70,6 +81,9 @@ const Post:NextPage = () => {
                     </div>
                 )
                 }
+                <script>
+                    hljs.highlightAll()
+                </script>
             </main>
             <div className="w-full h-1 bg-slate-400 rounded"></div>
         </>
