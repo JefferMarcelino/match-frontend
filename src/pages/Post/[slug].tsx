@@ -1,13 +1,15 @@
+import Image from "next/image";
+import { useEffect } from "react";
 import { NextPage } from "next";
-import Image from "next/image"
-import { useRouter } from 'next/router'
-import { gql, useQuery } from "@apollo/client"
-import { format } from "date-fns"
-import ptBR from "date-fns/locale/pt-BR"
-import hljs from "highlight.js"
-
-import loadingImg from "../../public/images/loading.gif"
+import { useRouter } from 'next/router';
 import Link from "next/link";
+import { gql, useQuery } from "@apollo/client";
+import { format } from "date-fns";
+import ptBR from "date-fns/locale/pt-BR";
+
+import "prismjs/themes/prism-tomorrow.css";
+import Prism from 'prismjs';
+import loadingImg from "../../public/images/loading.gif";
 
 interface GetPostBySlugResponse {
     post: {
@@ -53,13 +55,14 @@ const Post:NextPage = () => {
         var publishedDateFormatted = format(new Date(data?.post.publishedDate), "EEE' - 'd' de 'MMMM' - 'k'h'", {
             locale: ptBR,
         })
-        console.log()
-
     }
 
+    useEffect(() => {
+        Prism.highlightAll();
+    }, [data]);
 
     return (
-        <>
+        <> 
             <div>
                 <Link href="/">
                     <a className="font-bold underline underline-offset-4 text-link">Página principal</a>
@@ -81,9 +84,6 @@ const Post:NextPage = () => {
                     </div>
                 )
                 }
-                <script>
-                    hljs.highlightAll()
-                </script>
             </main>
             <div className="w-full h-1 bg-slate-400 rounded"></div>
         </>

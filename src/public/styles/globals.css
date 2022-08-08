@@ -18,12 +18,12 @@ html {
     @apply border-l-4 border-link p-2 bg-zinc-100 rounded
 }
 
-.content code {
-    @apply bg-gray-200 py-2 px-4 rounded-md mx-auto inline-block
+.content :not(pre) > code[class*="language-"] {
+    @apply px-4 py-2 rounded-md
 }
 
-.content pre code {
-    @apply w-full overflow-x-scroll
+.content pre[class*="language-"] {
+    @apply w-full overflow-x-scroll rounded-md
 }
 
 .content a {

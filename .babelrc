@@ -1,0 +1,11 @@
+{
+  "presets": ["next/babel"],
+  "plugins": [
+    ["prismjs", {
+        "languages": ["python", "javascript", "tsx"],
+        "plugins": ["line-numbers"],
+        "theme": "okaidia",
+        "css": true
+    }]
+  ]
+}
