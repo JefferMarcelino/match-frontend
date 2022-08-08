@@ -15,7 +15,7 @@ html {
 }
 
 .content blockquote {
-    @apply border-l-4 border-link p-2 bg-zinc-100 rounded
+    @apply border-l-4 border-link p-2 bg-zinc-100 rounded dark:bg-zinc-800 dark:text-white
 }
 
 .content :not(pre) > code[class*="language-"] {
@@ -27,7 +27,7 @@ html {
 }
 
 .content a {
-    @apply underline text-link font-bold
+    @apply underline text-link font-bold dark:text-darkLink
 }
 
 .content ul {
