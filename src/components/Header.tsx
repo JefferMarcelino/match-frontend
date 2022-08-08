@@ -1,10 +1,20 @@
 import Image from "next/image"
 import Link from 'next/link';
 import { ToggleLeft, ToggleRight } from "phosphor-react"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export const Header = () => {
     const [ isDarkMode, setIsDarkMode ] = useState(false);
+
+    useEffect(() => {
+        if (typeof window !== 'undefined') {
+            if (localStorage.getItem("theme")) {
+                setIsDarkMode(true)
+                document.querySelector("html")?.classList.add("dark")
+                console.log(localStorage.getItem("theme"))
+            }
+        }
+    }, [])
 
     return(
         <header className="flex items-center justify-between border-b-2 border-blue pb-2">
@@ -29,6 +39,11 @@ export const Header = () => {
             onClick={ () => {
                 setIsDarkMode(!isDarkMode)
                 document.querySelector("html")?.classList.toggle("dark")
+                if (isDarkMode) {
+                    localStorage.removeItem("theme")
+                } else {
+                    localStorage.setItem("theme", "dark")
+                }
             } }
             >
                 {

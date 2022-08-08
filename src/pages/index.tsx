@@ -31,11 +31,9 @@ const GET_POSTS_QUERY = gql`
 
 const HomePage: NextPage = () => {
   const { data } = useQuery<GetPostsQueryResponse>(GET_POSTS_QUERY)
-  console.log(data)
 
   return (
     <>
-      
       <main>
         <div className='flex flex-col gap-6'>
           { data?.posts.map((post) => {

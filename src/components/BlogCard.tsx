@@ -16,13 +16,9 @@ export const BlogCard = ({ title, publishedDate, coverPhoto, description, slug }
     const aboveLimit = description.length > LIMIT
     const dotsOrEmpty = aboveLimit ? "..." : ""
 
-    
     var publishedDateFormatted = format(new Date(publishedDate), "EEE' - 'd' de 'MMMM'", {
         locale: ptBR,
     })
-    console.log()
-
-
 
     return (
         <Link href={"Post/" + slug}>
