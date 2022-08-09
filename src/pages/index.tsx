@@ -1,6 +1,8 @@
 import type { NextPage } from 'next';
 import { gql, useQuery } from "@apollo/client"
 import { BlogCard } from '../components/BlogCard';
+import { Limits } from '../components/Limits';
+import { Header } from '../components/Header';
 
 interface GetPostsQueryResponse {
   posts: {
@@ -17,7 +19,7 @@ interface GetPostsQueryResponse {
 
 const GET_POSTS_QUERY = gql`
   query {
-    posts {
+    posts(orderBy: publishedAt_DESC) {
       title
       slug
       publishedDate
@@ -34,22 +36,25 @@ const HomePage: NextPage = () => {
 
   return (
     <>
-      <main>
-        <div className='flex flex-col gap-6'>
-          { data?.posts.map((post) => {
-            return (
-              <BlogCard 
-              key={post.id}
-              title={post.title}
-              slug={post.slug}
-              publishedDate={post.publishedDate}
-              description={post.description}
-              coverPhoto={post.coverPhoto.url}
-              />
-              )
-            }) }
-        </div>
-      </main>
+      <Limits>
+          <Header />
+          <main>
+            <div className='flex flex-col gap-7'>
+              { data?.posts.map((post) => {
+                return (
+                  <BlogCard 
+                  key={post.id}
+                  title={post.title}
+                  slug={post.slug}
+                  publishedDate={post.publishedDate}
+                  description={post.description}
+                  coverPhoto={post.coverPhoto.url}
+                  />
+                  )
+                }) }
+            </div>
+          </main>
+        </Limits>
     </>
   )
 }

@@ -10,6 +10,8 @@ import ptBR from "date-fns/locale/pt-BR";
 import "prismjs/themes/prism-tomorrow.css";
 import Prism from 'prismjs';
 import loadingImg from "../../public/images/loading.gif";
+import { Limits } from "../../components/Limits";
+import { Header } from "../../components/Header";
 
 interface GetPostBySlugResponse {
     post: {
@@ -62,7 +64,8 @@ const Post:NextPage = () => {
     }, [data]);
 
     return (
-        <> 
+        <Limits>
+            <Header />
             <div>
                 <Link href="/">
                     <a className="font-bold underline underline-offset-4 text-link dark:text-darkLink">Página principal</a>
@@ -86,7 +89,7 @@ const Post:NextPage = () => {
                 }
             </main>
             <div className="w-full h-1 bg-slate-400 rounded"></div>
-        </>
+        </Limits>
     )
 }
 

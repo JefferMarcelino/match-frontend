@@ -21,12 +21,22 @@ export const BlogCard = ({ title, publishedDate, coverPhoto, description, slug }
     })
 
     return (
-        <Link href={"Post/" + slug}>
-            <a className="block">
-                <h2 className="text-link text-2xl underline underline-offset-4">{ title }</h2>
-                <span className="text-zinc-600">{ publishedDateFormatted.toUpperCase() }</span>
-                <p className="mt-2">{ description.substring(0, LIMIT) + dotsOrEmpty }</p>
-            </a>
-        </Link>
+        <div className="">
+            <Link href={"Post/" + slug}>
+                <a className="block">
+                    <h2 className="text-link text-2xl">{ title }</h2>
+                </a>
+            </Link>
+            <span className="text-zinc-600">{ publishedDateFormatted.toUpperCase() }</span>
+            <p className="mt-2">{ description.substring(0, LIMIT) + dotsOrEmpty }</p>
+            
+            <div className="my-2 w-full border-b-2 border-zinc-600 rounded-sm p-0">
+                <Link href={"Post/" + slug}>
+                    <a className="">
+                        <span className="text-blue dark:text-darkLink font-bold">Read more</span>
+                    </a>
+                </Link>
+            </div>
+        </div>
     )
 }
