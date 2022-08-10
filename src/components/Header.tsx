@@ -24,8 +24,8 @@ export const Header = () => {
                     <a className="flex items-center gap-2">
                         <Image 
                         src={ icon }
-                        width={75}
-                        height={75}
+                        width={65}
+                        height={65}
                         alt="Me"
                         className='rounded-full'
                         />
@@ -41,7 +41,7 @@ export const Header = () => {
                 </Link>
 
                 <Link href="/About">
-                    <a className="underline">About</a>
+                    <a className="underline">Sobre</a>
                 </Link>
 
                 <button

@@ -12,11 +12,13 @@ import Prism from 'prismjs';
 import loadingImg from "../../public/images/loading.gif";
 import { Limits } from "../../components/Limits";
 import { Header } from "../../components/Header";
+import MetaData from "../../components/MetaData";
 
 interface GetPostBySlugResponse {
     post: {
         id: string;
         title: string;
+        description: string;
         publishedDate: Date;
         coverPhoto: {
             url: string;
@@ -32,6 +34,7 @@ const GET_POST_BY_SLUG_QUERY = gql`
         post(where: {slug: $slug}) {
             title
             publishedDate
+            description
             coverPhoto {
                 url
             }
@@ -64,32 +67,41 @@ const Post:NextPage = () => {
     }, [data]);
 
     return (
-        <Limits>
-            <Header />
-            <div>
-                <Link href="/">
-                    <a className="font-bold underline underline-offset-4 text-link dark:text-darkLink">Página principal</a>
-                </Link>
-            </div>
-            <main className="min-h-screen flex flex-col">
-                { data ? (
-                    <>
-                        <h1 className="text-4xl mb-2">{data?.post.title}</h1>
-                        <span className="text-zinc-400 mb-4">{ publishedDateFormatted.toUpperCase() }</span>
-                        <div 
-                        className="content"
-                        dangerouslySetInnerHTML={{ __html: data?.post.content.html }}>
+        <>
+            <Limits>
+                <Header />
+                <div>
+                    <Link href="/">
+                        <a className="font-bold underline underline-offset-4 text-link dark:text-darkLink">Página principal</a>
+                    </Link>
+                </div>
+                <main className="min-h-screen flex flex-col">
+                    { data ? (
+                        <>
+                            <h1 className="text-4xl mb-2">{data?.post.title}</h1>
+                            <span className="text-zinc-400 mb-4">{ publishedDateFormatted.toUpperCase() }</span>
+                            <div
+                            className="content"
+                            dangerouslySetInnerHTML={{ __html: data?.post.content.html }}>
+                            </div>
+
+                            <MetaData metaData={{
+                                title: `${ data?.post.title }`,
+                                description: `${ data?.post.description }`,
+                                author: 'Jeffer Marcelino',
+                                keywords: ['adolscente', 'blog', 'jeffer marcelino', 'programador'],
+                            }} />
+                        </>
+                    ): (
+                        <div className="self-center translate-y-[150%]">
+                            <Image src={loadingImg} width={100} height={100} alt="Loading" />
                         </div>
-                    </> 
-                ): (
-                    <div className="self-center translate-y-[150%]">
-                        <Image src={loadingImg} width={100} height={100} alt="Loading" />
-                    </div>
-                )
-                }
-            </main>
-            <div className="w-full h-1 bg-slate-400 rounded"></div>
-        </Limits>
+                    )
+                    }
+                </main>
+                <div className="w-full h-1 bg-slate-400 rounded"></div>
+            </Limits>
+        </>
     )
 }
 

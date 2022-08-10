@@ -33,7 +33,7 @@ export const BlogCard = ({ title, publishedDate, coverPhoto, description, slug }
             <div className="my-2 w-full border-b-2 border-zinc-600 rounded-sm p-0">
                 <Link href={"Post/" + slug}>
                     <a className="">
-                        <span className="text-blue dark:text-darkLink font-bold">Read more</span>
+                        <span className="text-blue dark:text-darkLink font-bold">Leia mais</span>
                     </a>
                 </Link>
             </div>

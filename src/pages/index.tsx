@@ -3,6 +3,7 @@ import { gql, useQuery } from "@apollo/client"
 import { BlogCard } from '../components/BlogCard';
 import { Limits } from '../components/Limits';
 import { Header } from '../components/Header';
+import MetaData from '../components/MetaData';
 
 interface GetPostsQueryResponse {
   posts: {
@@ -36,6 +37,13 @@ const HomePage: NextPage = () => {
 
   return (
     <>
+      <MetaData metaData={{
+        title: 'Vénus',
+        description: 'A vida de um adolescente programador em Moçambique',
+        author: 'Jeffer Marcelino',
+        keywords: ['adolscente', 'blog', 'jeffer marcelino', 'programador'],
+      }} />
+      
       <Limits>
           <Header />
           <main>

@@ -3,13 +3,20 @@ import Link from 'next/link';
 import { GithubLogo, GoogleLogo, InstagramLogo, LinkedinLogo, TwitterLogo, YoutubeLogo } from "phosphor-react"
 import { Header } from "../components/Header"
 import { Limits } from "../components/Limits"
+import MetaData from "../components/MetaData";
 
 const About = () => {
     return(
         <>
+            <MetaData metaData={{
+                title: 'Vénus | Sobre',
+                description: 'Sobre Jeffer Marcelino',
+                author: 'Jeffer Marcelino',
+                keywords: ['adolscente', 'blog', 'jeffer marcelino', 'programador'],
+            }} />
             <Limits>
                 <Header />
-                <h1 className="text-5xl border-b pb-2 border-link dark:border-white">About</h1>
+                <h1 className="text-5xl border-b pb-2 border-link dark:border-white">Sobre</h1>
                 <div className="flex flex-wrap items-center justify-center gap-7">
                     <div className="flex flex-col items-center gap-3">
                         <Image 
@@ -63,8 +70,8 @@ const About = () => {
                             </Link>
                         </div>
                     </div>
-                    <div className="flex-1 min-w-[300px]">
-                        <p>Meu nome é <strong>Jeffer Marcelino</strong>, e eu sou um adolescente moçambicano apaixonado por programação e tecnologia. Neste blog vou escrever sobre a minha vida em geral, dificuldades que encontrei na minha vida pessoal e profissional, e toda minha jornada como desenvolvedor.</p>
+                    <div className="flex-1 min-w-[300px] leading-relaxed">
+                        <p>Meu nome é <strong>Jeffer Marcelino</strong>, e eu sou um adolescente moçambicano apaixonado por programação e tecnologia. Neste blog vou falar sobre a minha vida, dificuldades que encontrei na minha vida pessoal e profissional, e toda minha jornada no mundo do desenvolvimento de software.</p>
                     </div>
                 </div>
             </Limits>
