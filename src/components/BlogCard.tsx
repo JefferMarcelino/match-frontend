@@ -24,7 +24,7 @@ export const BlogCard = ({ title, publishedDate, coverPhoto, description, slug }
         <div className="">
             <Link href={"Post/" + slug}>
                 <a className="block">
-                    <h2 className="text-link text-2xl">{ title }</h2>
+                    <h2 className="text-black dark:text-link font-bold text-2xl">{ title }</h2>
                 </a>
             </Link>
             <span className="text-zinc-600">{ publishedDateFormatted.toUpperCase() }</span>

@@ -70,16 +70,11 @@ const Post:NextPage = () => {
         <>
             <Limits>
                 <Header />
-                <div>
-                    <Link href="/">
-                        <a className="font-bold underline underline-offset-4 text-link dark:text-darkLink">Página principal</a>
-                    </Link>
-                </div>
                 <main className="min-h-screen flex flex-col">
                     { data ? (
                         <>
-                            <h1 className="text-4xl mb-2">{data?.post.title}</h1>
-                            <span className="text-zinc-400 mb-4">{ publishedDateFormatted.toUpperCase() }</span>
+                            <h1 className="text-4xl mb-2 text-center">{data?.post.title}</h1>
+                            <span className="text-zinc-400 mb-4 text-center">{ publishedDateFormatted.toUpperCase() }</span>
                             <div
                             className="content"
                             dangerouslySetInnerHTML={{ __html: data?.post.content.html }}>

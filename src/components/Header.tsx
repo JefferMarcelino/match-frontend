@@ -1,7 +1,5 @@
-import Image from "next/image"
 import Link from "next/link";
-import icon from '../public/images/icon.png';
-import { ToggleLeft, ToggleRight } from "phosphor-react"
+import { List, ToggleLeft, ToggleRight } from "phosphor-react"
 import { useEffect, useState } from "react";
 
 export const Header = () => {
@@ -18,47 +16,46 @@ export const Header = () => {
     }, [])
 
     return(
-        <header className="flex items-center justify-between">
+        <header className="flex items-center justify-center">
             <div className='flex gap-3 items-center'>
                 <Link href="/">
                     <a className="flex items-center gap-2">
-                        <Image 
-                        src={ icon }
-                        width={65}
-                        height={65}
-                        alt="Me"
-                        className='rounded-full'
-                        />
                         <div>
-                            <p className='hidden uppercase leading-tight text-3xl text-link dark:text-darkLink sm:inline-block'>Venus</p>
+                            <p className='uppercase leading-tight text-4xl text-link dark:text-darkLink'>Venus</p>
                         </div>
                     </a>
                 </Link>
             </div>
-            <div className="flex gap-4 items-center">
-                <Link href="/">
-                    <a className="underline">Blog</a>
-                </Link>
-
-                <Link href="/About">
-                    <a className="underline">Sobre</a>
-                </Link>
-
+            <div className="group absolute top-0 left-0">
                 <button
-                onClick={ () => {
-                    setIsDarkMode(!isDarkMode)
-                    document.querySelector("html")?.classList.toggle("dark")
-                    if (isDarkMode) {
-                        localStorage.removeItem("theme")
-                    } else {
-                        localStorage.setItem("theme", "dark")
-                    }
-                } }
-                >
-                    {
-                        isDarkMode ? <ToggleRight size={32} /> : <ToggleLeft color="black" size={32} />
-                    }
+                className="relative top-2 left-2 text-darkBg dark:text-white">
+                    <List size={32} /> 
                 </button>
+                <div
+                className={`flex flex-col gap-4 items-center w-28 relative left-0 top-2 dark:bg-white dark:text-black bg-darkBg text-white duration-300 rounded-lg p-4 -translate-x-[100%] group-focus-within:translate-x-0`}>
+                    <Link href="/">
+                        <a className="underline">Blog</a>
+                    </Link>
+                    <Link href="/About">
+                        <a className="underline">Sobre</a>
+                    </Link>
+                    <button
+                    className="text-white dark:text-black"
+                    onClick={ () => {
+                        setIsDarkMode(!isDarkMode)
+                        document.querySelector("html")?.classList.toggle("dark")
+                        if (isDarkMode) {
+                            localStorage.removeItem("theme")
+                        } else {
+                            localStorage.setItem("theme", "dark")
+                        }
+                    } }
+                    >
+                        {
+                            isDarkMode ? <ToggleRight size={32} /> : <ToggleLeft size={32} />
+                        }
+                    </button>
+                </div>
             </div>
         </header>
     )
