@@ -4,6 +4,8 @@
 <p>
   <img alt="Preview" src=".github/01.png" width="45%" align="left">
   <img alt="Preview" src=".github/02.png" width="45%" align="right">
+</p>
+<p>
   <img alt="Preview" src=".github/03.png" width="45%">
 </p>
 <br>
