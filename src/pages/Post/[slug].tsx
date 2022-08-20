@@ -1,18 +1,16 @@
-import Image from "next/image";
 import { useEffect } from "react";
-import { NextPage } from "next";
-import { useRouter } from 'next/router';
-import Link from "next/link";
-import { gql, useQuery } from "@apollo/client";
+import { GetStaticPaths, GetStaticProps, NextPage } from "next";
+import Image from "next/image";
+import { gql } from "@apollo/client";
 import { format } from "date-fns";
 import ptBR from "date-fns/locale/pt-BR";
-
-import "prismjs/themes/prism-tomorrow.css";
 import Prism from 'prismjs';
-import loadingImg from "../../public/images/loading.gif";
 import { Limits } from "../../components/Limits";
 import { Header } from "../../components/Header";
 import MetaData from "../../components/MetaData";
+import { client } from "../../lib/apollo";
+import loadingImg from "../../public/images/loading.gif";
+import "prismjs/themes/prism-tomorrow.css";
 
 interface GetPostBySlugResponse {
     post: {
@@ -45,51 +43,80 @@ const GET_POST_BY_SLUG_QUERY = gql`
     }
 `
 
-const Post:NextPage = () => {
-    const router = useRouter()
-    const { slug } = router.query
-    var publishedDateFormatted = ""
-
-    const { data } = useQuery<GetPostBySlugResponse>(GET_POST_BY_SLUG_QUERY, {
-        variables: {
+const GET_POSTS_SLUGS_QUERY = gql`
+    query {
+        posts {
             slug
         }
+    }
+`
+
+export const getStaticPaths: GetStaticPaths = async () => {
+    const { data } = await client.query({
+        query: GET_POSTS_SLUGS_QUERY,
+    });
+
+    const paths = data.posts.map((post:any) => {
+        return { params: { slug: post.slug } }
     })
 
-    if (data?.post) {
-        var publishedDateFormatted = format(new Date(data?.post.publishedDate), "EEE' - 'd' de 'MMMM' - 'k'h'", {
+    return {
+      paths,
+      fallback: false,
+    };
+}
+
+export const getStaticProps: GetStaticProps = async (context) => {
+    const { data } = await client.query({
+        query: GET_POST_BY_SLUG_QUERY,
+        variables: context.params
+    });
+
+    return {
+        props: {
+            post: data.post,
+        },
+        revalidate: 60 * 60 *24
+    }
+}
+
+const Post:NextPage<GetPostBySlugResponse> = ({ post }) => {
+    var publishedDateFormatted = ""
+
+    if (post) {
+        var publishedDateFormatted = format(new Date(post.publishedDate), "EEE' - 'd' de 'MMMM' - 'k'h'", {
             locale: ptBR,
         })
     }
 
     useEffect(() => {
         Prism.highlightAll();
-    }, [data]);
+    }, [post]);
 
     return (
         <>
             <Limits>
                 <Header />
                 <main className="min-h-screen flex flex-col">
-                    { data ? (
+                    { post ? (
                         <>
-                            <h1 className="text-4xl mb-2 text-center">{data?.post.title}</h1>
+                            <h1 className="text-4xl mb-2 text-center">{ post.title }</h1>
                             <span className="text-zinc-400 mb-4 text-center">{ publishedDateFormatted.toUpperCase() }</span>
                             <div
                             className="content"
-                            dangerouslySetInnerHTML={{ __html: data?.post.content.html }}>
+                            dangerouslySetInnerHTML={{ __html: post.content.html }}>
                             </div>
 
                             <MetaData metaData={{
-                                title: `${ data?.post.title }`,
-                                description: `${ data?.post.description }`,
+                                title: `${ post.title }`,
+                                description: `${ post.description }`,
                                 author: 'Jeffer Marcelino',
-                                keywords: ['adolscente', 'blog', 'jeffer marcelino', 'programador'],
+                                keywords: ['adolscente', 'blog', 'jeffer marcelino', 'programador', 'tecnologia'],
                             }} />
                         </>
                     ): (
                         <div className="self-center translate-y-[150%]">
-                            <Image src={loadingImg} width={100} height={100} alt="Loading" />
+                            <Image src={ loadingImg } width={100} height={100} alt="Loading" />
                         </div>
                     )
                     }
