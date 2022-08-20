@@ -1,9 +1,10 @@
-import type { NextPage } from 'next';
+import type { GetStaticProps, NextPage } from 'next';
 import { gql, useQuery } from "@apollo/client"
 import { BlogCard } from '../components/BlogCard';
 import { Limits } from '../components/Limits';
 import { Header } from '../components/Header';
 import MetaData from '../components/MetaData';
+import { client } from '../lib/apollo';
 
 interface GetPostsQueryResponse {
   posts: {
@@ -21,6 +22,7 @@ interface GetPostsQueryResponse {
 const GET_POSTS_QUERY = gql`
   query {
     posts(orderBy: publishedAt_DESC) {
+      id
       title
       slug
       publishedDate
@@ -32,23 +34,34 @@ const GET_POSTS_QUERY = gql`
   }
 `
 
-const HomePage: NextPage = () => {
-  const { data } = useQuery<GetPostsQueryResponse>(GET_POSTS_QUERY)
+export const getStaticProps: GetStaticProps = async () => {
+  const { data } = await client.query<GetPostsQueryResponse>({
+    query: GET_POSTS_QUERY,
+  });
 
+  return {
+    props: {
+      posts: data.posts
+    },
+    revalidate: 60 * 60 * 4,
+  };
+}
+
+const HomePage: NextPage<GetPostsQueryResponse> = ({ posts }) => {
   return (
     <>
       <MetaData metaData={{
         title: 'Vénus',
-        description: 'A vida de um adolescente programador em Moçambique',
+        description: 'Tudo sobre programação e tecnologia',
         author: 'Jeffer Marcelino',
-        keywords: ['adolscente', 'blog', 'jeffer marcelino', 'programador'],
+        keywords: ['adolscente', 'blog', 'jeffer marcelino', 'programador', 'tecnologia'],
       }} />
       
       <Limits>
           <Header />
           <main>
             <div className='flex flex-col gap-7'>
-              { data?.posts.map((post) => {
+              { posts?.map((post) => {
                 return (
                   <BlogCard 
                   key={post.id}
