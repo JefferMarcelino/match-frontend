@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
+import Link from "next/link";
 import Image from "next/image";
 import { gql } from "@apollo/client";
 import { format } from "date-fns";
@@ -100,19 +101,19 @@ const Post:NextPage<GetPostBySlugResponse> = ({ post }) => {
                 <main className="min-h-screen flex flex-col">
                     { post ? (
                         <>
-                            <h1 className="text-4xl mb-2 text-center">{ post.title }</h1>
-                            <span className="text-zinc-400 mb-4 text-center">{ publishedDateFormatted.toUpperCase() }</span>
-                            <div
-                            className="content"
-                            dangerouslySetInnerHTML={{ __html: post.content.html }}>
-                            </div>
-
                             <MetaData metaData={{
                                 title: `${ post.title }`,
                                 description: `${ post.description }`,
                                 author: 'Jeffer Marcelino',
                                 keywords: ['adolscente', 'blog', 'jeffer marcelino', 'programador', 'tecnologia'],
                             }} />
+
+                            <h1 className="text-4xl mb-2 text-center">{ post.title }</h1>
+                            <span className="text-zinc-400 mb-4 text-center">{ publishedDateFormatted.toUpperCase() }</span>
+                            <div
+                            className="content"
+                            dangerouslySetInnerHTML={{ __html: post.content.html }}>
+                            </div>
                         </>
                     ): (
                         <div className="self-center translate-y-[150%]">
@@ -121,6 +122,7 @@ const Post:NextPage<GetPostBySlugResponse> = ({ post }) => {
                     )
                     }
                 </main>
+                <span className="underline text-link font-bold dark:text-darkLink"><Link href="/">Veja outros posts</Link></span>
                 <div className="w-full h-1 bg-slate-400 rounded"></div>
             </Limits>
         </>
