@@ -60,7 +60,7 @@ const HomePage: NextPage<GetPostsQueryResponse> = ({ posts }) => {
       <Limits>
           <Header />
           <main>
-            <div className='flex flex-col gap-7'>
+            <div className='columns-1 gap-5 lg:columns-2'>
               { posts?.map((post) => {
                 return (
                   <BlogCard 

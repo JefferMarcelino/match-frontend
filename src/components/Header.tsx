@@ -26,7 +26,7 @@ export const Header = () => {
                     </a>
                 </Link>
             </div>
-            <div className="group absolute top-0 left-0">
+            <div className="group absolute top-0 left-0 z-50">
                 <button
                 className="relative top-2 left-2 text-darkBg dark:text-white">
                     <List size={32} /> 
