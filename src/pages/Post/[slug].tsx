@@ -1,12 +1,14 @@
+/* eslint-disable @next/next/no-img-element */
 import { useEffect } from "react";
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
+import { motion, useScroll, useSpring } from "framer-motion"
 import Link from "next/link";
 import Image from "next/image";
 import { gql } from "@apollo/client";
 import { format } from "date-fns";
 import ptBR from "date-fns/locale/pt-BR";
 import Prism from 'prismjs';
-import { Limits } from "../../components/Limits";
+import { Limits } from "../../components/Layouts/Limits";
 import { Header } from "../../components/Header";
 import MetaData from "../../components/MetaData";
 import { client } from "../../lib/apollo";
@@ -82,6 +84,13 @@ export const getStaticProps: GetStaticProps = async (context) => {
 }
 
 const Post:NextPage<GetPostBySlugResponse> = ({ post }) => {
+    const { scrollYProgress } = useScroll()
+    const scaleX = useSpring(scrollYProgress, {
+        stiffness: 100,
+        damping: 30,
+        restDelta: 0.001
+    });
+
     var publishedDateFormatted = ""
 
     if (post) {
@@ -96,6 +105,10 @@ const Post:NextPage<GetPostBySlugResponse> = ({ post }) => {
 
     return (
         <>
+        <motion.div 
+            className="w-full h-3 bg-link fixed top-0 left-0 right-0 origin-[0%] z-50"
+            style={{ scaleX: scaleX }}>
+        </motion.div>
             <Limits>
                 <Header />
                 <main className="min-h-screen flex flex-col">

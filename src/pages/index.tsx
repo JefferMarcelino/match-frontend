@@ -1,7 +1,7 @@
 import type { GetStaticProps, NextPage } from 'next';
 import { gql, useQuery } from "@apollo/client"
 import { BlogCard } from '../components/BlogCard';
-import { Limits } from '../components/Limits';
+import { Limits } from '../components/Layouts/Limits';
 import { Header } from '../components/Header';
 import MetaData from '../components/MetaData';
 import { client } from '../lib/apollo';

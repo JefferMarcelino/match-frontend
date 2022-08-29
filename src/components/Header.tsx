@@ -28,7 +28,7 @@ export const Header = () => {
             </div>
             <div className="group absolute top-0 left-0">
                 <button
-                className="relative top-2 left-2 text-darkBg dark:text-white">
+                className="relative top-1 left-2 text-darkBg dark:text-white">
                     <List size={32} /> 
                 </button>
                 <div

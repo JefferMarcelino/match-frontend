@@ -1,8 +1,9 @@
+import { motion } from "framer-motion";
 import Image from "next/image"
 import Link from 'next/link';
 import { GithubLogo, GoogleLogo, InstagramLogo, LinkedinLogo, TwitterLogo, YoutubeLogo } from "phosphor-react"
 import { Header } from "../components/Header"
-import { Limits } from "../components/Limits"
+import { Limits } from "../components/Layouts/Limits"
 import MetaData from "../components/MetaData";
 
 const About = () => {
@@ -19,15 +20,29 @@ const About = () => {
                 <h1 className="text-5xl border-b pb-2 border-link dark:border-white">Sobre</h1>
                 <div className="flex flex-wrap items-center justify-center gap-7">
                     <div className="flex flex-col items-center gap-3">
-                        <Image 
-                        src="https://avatars.githubusercontent.com/u/77571208?v=4" 
-                        width={200}
-                        height={200}
-                        alt="Me"
-                        className='rounded-full'
-                        />
+                        <div className="relative">
+                            <Image
+                            src="https://avatars.githubusercontent.com/u/77571208?v=4"
+                            width={200}
+                            height={200}
+                            alt="Me"
+                            className='rounded-full relative z-10'
+                            />
+                            <motion.div 
+                            className="w-full h-full top-0 right-0 z-0 absolute bg-link rounded-md flex items-center justify-center"
+                            animate={{
+                                scale: [1, 1.4, 1.4, 1, 1],
+                                borderRadius: ["20%", "20%", "50%", "50%", "20%"],
+                                rotate: [0, 0, 270, 270, 0]
+                            }}
+                            transition={{
+                                yoyo: Infinity,
+                                duration: 2
+                            }}>
+                            </motion.div>
+                        </div>
 
-                        <div className="text-center">
+                        <div className="text-center relative z-10">
                             <p className="text-2xl">Jeffer Marcelino</p>
                             <span className='text-zinc-600'>Web Developer</span>
                         </div>
