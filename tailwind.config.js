@@ -10,7 +10,7 @@ module.exports = {
         "blue": "#183152",
         "link": "#FF3657",
         "darkBg": "#0C141C",
-        "darkLink": "#51FCCC",
+        "darkLink": "#FFFAED",
         "cc": "#51FCCC"
       },
     }

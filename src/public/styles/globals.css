@@ -41,3 +41,7 @@ html {
 .content li {
     @apply leading-8
 }
+
+.active {
+    @apply after:absolute after:h-5 after:-bottom-6 after:left-0 after:rounded after:bg-[#FF8800] after:w-full
+}
