@@ -109,8 +109,8 @@ const Post:NextPage<GetPostBySlugResponse> = ({ post }) => {
             className="w-full h-3 bg-link fixed top-0 left-0 right-0 origin-[0%] z-50"
             style={{ scaleX: scaleX }}>
         </motion.div>
+            <Header />
             <Limits>
-                <Header />
                 <main className="min-h-screen flex flex-col">
                     { post ? (
                         <>

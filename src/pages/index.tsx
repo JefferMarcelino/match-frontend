@@ -5,6 +5,7 @@ import { Limits } from '../components/Layouts/Limits';
 import { Header } from '../components/Header';
 import MetaData from '../components/MetaData';
 import { client } from '../lib/apollo';
+import { ScroolToTop } from '../components/ScroolToTop';
 
 interface GetPostsQueryResponse {
   posts: {
@@ -57,25 +58,27 @@ const HomePage: NextPage<GetPostsQueryResponse> = ({ posts }) => {
         keywords: ['adolscente', 'blog', 'jeffer marcelino', 'programador', 'tecnologia'],
       }} />
       
+      <Header />
       <Limits>
-          <Header />
-          <main>
-            <div className='flex flex-col gap-7'>
-              { posts?.map((post) => {
-                return (
-                  <BlogCard 
-                  key={post.id}
-                  title={post.title}
-                  slug={post.slug}
-                  publishedDate={post.publishedDate}
-                  description={post.description}
-                  coverPhoto={post.coverPhoto.url}
-                  />
-                  )
-                }) }
-            </div>
-          </main>
-        </Limits>
+        <div className='max-w-4xl mx-auto flex flex-col gap-10'>
+          <div className='flex flex-col gap-7'>
+            { posts?.map((post) => {
+              return (
+                <BlogCard 
+                key={post.id}
+                title={post.title}
+                slug={post.slug}
+                publishedDate={post.publishedDate}
+                description={post.description}
+                coverPhoto={post.coverPhoto.url}
+                />
+                )
+              }) }
+          </div>
+          <footer className="mx-auto text-center">@Jeffer Marcelino</footer>
+          <ScroolToTop />
+        </div>
+      </Limits>
     </>
   )
 }
